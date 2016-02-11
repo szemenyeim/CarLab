@@ -64,10 +64,14 @@ if __name__=='__main__':
     fig.canvas.draw()
 
     # Read video file
+    clip = cv2.VideoCapture("original.mp4")
 
     while(True):
 
         # Read frame from video
+        success, img = clip.read()
+        if not success:
+            break
 
         # Start time measurement
         t1 = time.time()
@@ -79,6 +83,7 @@ if __name__=='__main__':
         # Set controller inputs
 
         # Compute control
+        control = 0
 
         # End time measurement
         t2 = time.time()

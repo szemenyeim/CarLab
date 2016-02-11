@@ -194,10 +194,10 @@ def process_image(img):
     ret = slide_window(binary_warped, histogram)
 
     # Measuring Curvature
-    curveRadius, right_curverad = measure_curvature(ret)
+    cur, right_curverad = measure_curvature(ret)
 
     # Sanity check
-    if not sanity(ret,curveRadius,right_curverad):
+    if not sanity(ret,cur,right_curverad):
         # Use last good images if sanity check fails
         binary_warped = used_warped
         ret = used_ret
@@ -208,10 +208,10 @@ def process_image(img):
     # Compute deviation
     deviation_pixels = img.shape[1]/2 - abs(ret['right_fitx'][-1] - ret['left_fitx'][-1])
     xm_per_pix = 3.7/(650)
-    deviation = deviation_pixels * xm_per_pix
+    dev = deviation_pixels * xm_per_pix
 
     # update last good images
     used_warped = binary_warped
     used_ret = ret
 
-    return img, deviation, curveRadius
+    return img, dev, cur
