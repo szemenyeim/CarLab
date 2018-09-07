@@ -1,4 +1,4 @@
-# CarLab
+# Lane detection in python
 Control Engineering and Image Processing Lab - Autonomous Vehicles
 
 ## Requirements
