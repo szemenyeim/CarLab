@@ -7,37 +7,31 @@ from Control import createContorller
 import matplotlib.pyplot as plt
 
 
-def drawImage(img, dev, cur, devFilt, curFilt, slope):
+def drawImage(img, dev, cur):
 
     # Annotating curvature
     fontType = cv2.FONT_HERSHEY_SIMPLEX
     curvature_text = 'The radius of curvature = ' + str(round(cur, 3)) + 'm'
     cv2.putText(img, curvature_text, (30, 60), fontType, 0.5, (255, 255, 255), 1)
 
-    curvature_text = 'The radius of filtered curvature = ' + str(round(curFilt, 3)) + 'm'
-    cv2.putText(img, curvature_text, (30, 160), fontType, 0.5, (255, 255, 255), 1)
-
     # Annotating deviation
     direction = "left" if dev < 0 else "right"
     deviation_text = 'Vehicle is ' + str(round(abs(dev), 3)) + 'm ' + direction + ' of center'
     cv2.putText(img, deviation_text, (30, 110), fontType, 0.5, (255, 255, 255), 1)
 
-    direction = "left" if devFilt < 0 else "right"
-    deviation_text = 'Vehicle is ' + str(round(abs(devFilt), 3)) + 'm ' + direction + ' of center (filtered)'
-    cv2.putText(img, deviation_text, (30, 210), fontType, 0.5, (255, 255, 255), 1)
-
     return img
 
 if __name__=='__main__':
-    output = 'result.mp4'
-    clip = cv2.VideoCapture("original.mp4")
 
+    # Measure framerate
     sum = 0
     frameCnt = 0
 
+    # Create estimator and controller classes
     estimator = Estimator()
     controller = createContorller()
 
+    # Create empty arrays for plotting
     devs = np.array([])
     devFilts = np.array([])
     curs = np.array([])
@@ -45,6 +39,7 @@ if __name__=='__main__':
     slopeFilts = np.array([])
     controls = np.array([])
 
+    # Create figures
     fig = plt.gcf()
     t = np.linspace(0, len(devs) - 1, len(devs))
     p1 = plt.subplot(311)
@@ -63,22 +58,40 @@ if __name__=='__main__':
     fig.show()
     fig.canvas.draw()
 
+    # Read video file
+    clip = cv2.VideoCapture("original.mp4")
+
     while(True):
 
+        # Read frame from video
         good, img = clip.read()
         if not good:
             break
 
+        # Start time measurement
         t1 = time.time()
+
+        # Process image
         proc, dev, cur = process_image(img)
+
+        # Update estimates
         curProc, slope, devProc = estimator.update(cur,dev)
-        proc = drawImage(proc,dev,cur,devProc,curProc,slope)
+
+        # Set controller inputs
         controller.input['error'] = devProc*4
         controller.input['delta'] = slope*40
+
+        # Compute control
         controller.compute()
         control = controller.output['output']
+
+        # End time measurement
         t2 = time.time()
 
+        # Draw on image
+        proc = drawImage(proc,devProc,curProc)
+
+        # Append arrays for plotting
         devs = np.append(devs,dev)
         devFilts = np.append(devFilts,devProc)
         curs = np.append(curs,cur)
@@ -86,6 +99,7 @@ if __name__=='__main__':
         slopeFilts = np.append(slopeFilts,slope)
         controls = np.append(controls,control)
 
+        # Update plots
         t = np.linspace(0, len(devs) - 1, len(devs))
         line11.set_data(t,devs)
         line12.set_data(t,devFilts)
@@ -102,16 +116,19 @@ if __name__=='__main__':
         p3.relim()
         fig.canvas.draw()
 
+        # Increate time elapsed and frame counter
         sum += (t2 - t1)
         frameCnt += 1
 
+        # Show image and exit on 'Esc'
         cv2.imshow("video",proc)
         if cv2.waitKey(1) == 27:
             exit(0)
 
-
-    plt.show()
-
+    # Display runtime and fps
     avgTime = sum / frameCnt * 1000
     print("Average time: %f" % avgTime)
     print("Average fps: %f" % (1000.0 / avgTime))
+
+    # Prevent quitting immediately
+    plt.show()

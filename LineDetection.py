@@ -209,6 +209,7 @@ def process_image(image):
 
     # Sanity check
     if not sanity(ret,left_curverad,right_curverad):
+        # Use last good images if sanity check fails
         binary_warped = used_warped
         ret = used_ret
 
@@ -222,6 +223,7 @@ def process_image(image):
     xm_per_pix = 3.7/(650)
     deviation = deviation_pixels * xm_per_pix
 
+    # update last good images
     used_warped = binary_warped
     used_ret = ret
 
