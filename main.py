@@ -3,6 +3,7 @@ import cv2
 import time
 from LineDetection import process_image
 from Estimator import Estimator
+from Control import createContorller
 import matplotlib.pyplot as plt
 
 
@@ -35,12 +36,14 @@ if __name__=='__main__':
     frameCnt = 0
 
     estimator = Estimator()
+    controller = createContorller()
 
     devs = np.array([])
     devFilts = np.array([])
     curs = np.array([])
     curFilts = np.array([])
     slopeFilts = np.array([])
+    controls = np.array([])
 
     fig = plt.gcf()
     t = np.linspace(0, len(devs) - 1, len(devs))
@@ -53,9 +56,9 @@ if __name__=='__main__':
     line21, = p2.plot(t, np.log(curs), 'r')
     line22, = p2.plot(t, np.log(curFilts), 'b')
     p3 = plt.subplot(313)
-    p3.set_title('Slope and deviation')
+    p3.set_title('Slope, deviation and control')
     line31, = p3.plot(t, slopeFilts * 10, 'r')
-    line32, = p3.plot(t, slopeFilts * 10, 'b')
+    line32, = p3.plot(t, controls, 'b')
     line33, = p3.plot(t, devFilts, 'g')
     fig.show()
     fig.canvas.draw()
@@ -70,6 +73,10 @@ if __name__=='__main__':
         proc, dev, cur = process_image(img)
         curProc, slope, devProc = estimator.update(cur,dev)
         proc = drawImage(proc,dev,cur,devProc,curProc,slope)
+        controller.input['error'] = devProc*4
+        controller.input['delta'] = slope*40
+        controller.compute()
+        control = controller.output['output']
         t2 = time.time()
 
         devs = np.append(devs,dev)
@@ -77,21 +84,16 @@ if __name__=='__main__':
         curs = np.append(curs,cur)
         curFilts = np.append(curFilts,curProc)
         slopeFilts = np.append(slopeFilts,slope)
-
-        # Separate
-        pos_signal = slopeFilts.copy()*10
-        neg_signal = slopeFilts.copy()*10
-        pos_signal[pos_signal <= -0.05] = np.nan
-        neg_signal[neg_signal > 0.00] = np.nan
+        controls = np.append(controls,control)
 
         t = np.linspace(0, len(devs) - 1, len(devs))
         line11.set_data(t,devs)
         line12.set_data(t,devFilts)
         line21.set_data(t,np.log(curs))
         line22.set_data(t,np.log(curFilts))
-        line31.set_data(t,pos_signal)
-        line32.set_data(t,neg_signal)
-        line33.set_data(t,devFilts)
+        line31.set_data(t,slopeFilts*40)
+        line32.set_data(t,controls)
+        line33.set_data(t,devFilts*4)
         p1.autoscale_view(True, True, True)
         p1.relim()
         p2.autoscale_view(True, True, True)
