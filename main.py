@@ -46,15 +46,18 @@ if __name__=='__main__':
     p1.set_title('Deviation from lane center')
     line11, = p1.plot(t, devs, 'r')
     line12, = p1.plot(t, devFilts, 'b')
+    plt.legend((line11, line12), ('Measured', 'Filtered'))
     p2 = plt.subplot(312)
     p2.set_title('Line curvature')
     line21, = p2.plot(t, np.log(curs), 'r')
     line22, = p2.plot(t, np.log(curFilts), 'b')
+    plt.legend((line21, line22), ('Measured', 'Filtered'))
     p3 = plt.subplot(313)
     p3.set_title('Slope, deviation and control')
     line31, = p3.plot(t, slopeFilts * 10, 'r')
     line32, = p3.plot(t, controls, 'b')
     line33, = p3.plot(t, devFilts, 'g')
+    plt.legend((line31, line32, line33), ('Slope', 'Controller Output', 'Deviation'))
     fig.show()
     fig.canvas.draw()
 
@@ -64,8 +67,8 @@ if __name__=='__main__':
     while(True):
 
         # Read frame from video
-        good, img = clip.read()
-        if not good:
+        success, img = clip.read()
+        if not success:
             break
 
         # Start time measurement

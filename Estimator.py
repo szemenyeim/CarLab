@@ -4,15 +4,18 @@ class Estimator(object):
     def __init__(self):
         super(Estimator,self).__init__()
 
-        # Arrays for input variables
-        self.curvatures = np.array([])
-        self.deviations = np.array([])
-
         # Number of measurementes to use
         self.numEstim = 25
 
         # Number of estimates to use for slope estimation
         self.slopeEstimNum = 5
+
+        # Iteration counter
+        self.iter = 0
+
+        # Arrays for input variables
+        self.curvatures = np.zeros(self.numEstim)
+        self.deviations = np.zeros(self.numEstim)
 
         # Store filtered deviations for slope estimation
         self.filteredDeviations = np.zeros(self.slopeEstimNum)
@@ -29,15 +32,13 @@ class Estimator(object):
 
     def update(self, curv, dev):
 
-        # Append new inputs to the arrays
-        self.curvatures = np.append(self.curvatures,curv)
-        self.deviations = np.append(self.deviations,dev)
+        # Shift the arrays
+        self.curvatures = np.roll(self.curvatures,1)
+        self.deviations = np.roll(self.deviations,1)
 
-        # If the array is too large, remove the last element
-        if len(self.curvatures) > self.numEstim:
-            self.curvatures = np.delete(self.curvatures,0)
-        if len(self.deviations) > self.numEstim:
-            self.deviations = np.delete(self.deviations,0)
+        # Write new elements to replace the last
+        self.curvatures[0] = curv
+        self.deviations[0] = dev
 
         # Compute means
         curvEst = np.mean(self.curvatures)
@@ -47,11 +48,16 @@ class Estimator(object):
         self.filteredDeviations = np.append(self.filteredDeviations, devEst)
         self.filteredDeviations = np.delete(self.filteredDeviations,0)
 
-        # Perform LS estimation to fit a line on the deviations
-        lineEst, = np.linalg.lstsq(self.X,self.filteredDeviations, rcond=None)
+        self.iter += 1
 
-        # Get the slope of the line - change of the deviation
-        slopeEst = lineEst[0]
+        if self.iter < self.slopeEstimNum:
+            slopeEst = 0
+        else:
+            # Perform LS estimation to fit a line on the deviations
+            lineEst = np.linalg.lstsq(self.X,self.filteredDeviations, rcond=None)[0]
+
+            # Get the slope of the line - change of the deviation
+            slopeEst = lineEst[0]
 
         return curvEst,slopeEst,devEst
 
