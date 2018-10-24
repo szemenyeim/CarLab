@@ -62,31 +62,21 @@ if __name__=='__main__':
     fig.canvas.draw()
 
     # Read video file
-    clip = cv2.VideoCapture("original.mp4")
 
     while(True):
 
         # Read frame from video
-        success, img = clip.read()
-        if not success:
-            break
 
         # Start time measurement
         t1 = time.time()
 
         # Process image
-        proc, dev, cur = process_image(img)
 
         # Update estimates
-        curProc, slope, devProc = estimator.update(cur,dev)
 
         # Set controller inputs
-        controller.input['error'] = devProc*4
-        controller.input['delta'] = slope*40
 
         # Compute control
-        controller.compute()
-        control = controller.output['output']
 
         # End time measurement
         t2 = time.time()

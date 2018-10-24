@@ -28,25 +28,21 @@ class Estimator(object):
         [ 3 1 ]
         [ 4 1 ]
         '''
-        self.X = np.transpose(np.array([np.linspace(0,self.slopeEstimNum-1, num=self.slopeEstimNum),np.ones(self.slopeEstimNum)]))
+
 
     def update(self, curv, dev):
 
         # Shift the arrays
-        self.curvatures = np.roll(self.curvatures,1)
-        self.deviations = np.roll(self.deviations,1)
+
 
         # Write new elements to replace the last
-        self.curvatures[0] = curv
-        self.deviations[0] = dev
+
 
         # Compute means
-        curvEst = np.mean(self.curvatures)
-        devEst = np.mean(self.deviations)
+
 
         # Append latest deviation estimate and remove oldest
-        self.filteredDeviations = np.append(self.filteredDeviations, devEst)
-        self.filteredDeviations = np.delete(self.filteredDeviations,0)
+
 
         self.iter += 1
 
@@ -54,10 +50,11 @@ class Estimator(object):
             slopeEst = 0
         else:
             # Perform LS estimation to fit a line on the deviations
-            lineEst = np.linalg.lstsq(self.X,self.filteredDeviations, rcond=None)[0]
+            None
+
 
             # Get the slope of the line - change of the deviation
-            slopeEst = lineEst[0]
+
 
         return curvEst,slopeEst,devEst
 
