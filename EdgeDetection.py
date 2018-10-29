@@ -17,7 +17,7 @@ def create_sobels(image, sobel_kernel=3):
     return abs_sobelx,abs_sobely,scaled_sobelx,scaled_sobely
 
 # Threshold gradients based on magintude
-def mag_thresh(scaled_sobelx, scaled_sobely, mag_thresh=(0, 255)):
+def mag_thresh(scaled_sobelx, scaled_sobely, mag_thresh=(30, 100)):
     # Compute gradient magnitude
 
     # Threshold using inRange
@@ -26,7 +26,7 @@ def mag_thresh(scaled_sobelx, scaled_sobely, mag_thresh=(0, 255)):
     return mag_binary
 
 # Threshold gradients based on direction
-def dir_threshold(abs_sobelx, abs_sobely, thresh=(0, np.pi/2)):
+def dir_threshold(abs_sobelx, abs_sobely, thresh=(0.7, 1.3)):
     # Compute gradient direction
 
     # Threshold using inRange
@@ -35,21 +35,21 @@ def dir_threshold(abs_sobelx, abs_sobely, thresh=(0, np.pi/2)):
     return dir_binary
 
 # Apply color threshold
-def color_threshold(image):
+def color_threshold(image, thresh=(170,255)):
     # Convert to hls
 
-    # Get luminance
+    # Get s channel
 
     # Threshold using inRange
 
 
-    return l_binary
+    return color_binary
 
 # Combine all kinds of thresholds
 def apply_thresholds(image, ksize=3):
     # Get derivatives
 
-    # Threshold scaled gradient images using inRange
+    # Threshold scaled gradient images using inRange (20,100)
 
     # Compute magnitude and direction threshold
 

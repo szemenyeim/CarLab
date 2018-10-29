@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from EdgeDetection import apply_thresholds
+import Matplotlib.pyplot as plt
 
 def draw_lane_lines(original_image, warped_image, Minv, draw_info):
     leftx = draw_info['leftx']
@@ -31,14 +32,13 @@ def warp(img):
 
     # Get perspective transforms
 
-
     # Warp image
 
+    cv2.imshow("Warped Binary",binary_warped)
 
     return binary_warped, Minv
 
 def get_histogram(binary_warped):
-
 
     return histogram
 
@@ -194,18 +194,16 @@ def process_image(image):
     ret = slide_window(binary_warped, histogram)
 
     # Measuring Curvature
-    left_curverad, right_curverad = measure_curvature(ret)
+    curveRadius, right_curverad = measure_curvature(ret)
 
     # Sanity check
-    if not sanity(ret,left_curverad,right_curverad):
+    if not sanity(ret,curveRadius,right_curverad):
         # Use last good images if sanity check fails
         binary_warped = used_warped
         ret = used_ret
 
-    result = image
-
     # Visualizing Lane Lines Info
-    result[450:710, 220:1150] = draw_lane_lines(roi, binary_warped, Minv, ret)
+    image[450:710, 220:1150] = draw_lane_lines(roi, binary_warped, Minv, ret)
 
     # Compute deviation
     deviation_pixels = image.shape[1]/2 - abs(ret['right_fitx'][-1] - ret['left_fitx'][-1])
@@ -216,4 +214,4 @@ def process_image(image):
     used_warped = binary_warped
     used_ret = ret
 
-    return result, deviation, left_curverad
+    return image, deviation, curveRadius

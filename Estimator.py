@@ -28,7 +28,7 @@ class Estimator(object):
         [ 3 1 ]
         [ 4 1 ]
         '''
-
+        self.X = np.transpose(np.array([np.linspace(0,self.slopeEstimNum-1, num=self.slopeEstimNum),np.ones(self.slopeEstimNum)]))
 
     def update(self, curv, dev):
 

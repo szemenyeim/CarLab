@@ -81,33 +81,35 @@ if __name__=='__main__':
         # End time measurement
         t2 = time.time()
 
-        # Draw on image
-        proc = drawImage(proc,devProc,curProc)
+        if devEst is not None:
 
-        # Append arrays for plotting
-        devs = np.append(devs,dev)
-        devFilts = np.append(devFilts,devProc)
-        curs = np.append(curs,cur)
-        curFilts = np.append(curFilts,curProc)
-        slopeFilts = np.append(slopeFilts,slope)
-        controls = np.append(controls,control)
+            # Draw on image
+            img = drawImage(img,devEst,curEst)
 
-        # Update plots
-        t = np.linspace(0, len(devs) - 1, len(devs))
-        line11.set_data(t,devs)
-        line12.set_data(t,devFilts)
-        line21.set_data(t,np.log(curs))
-        line22.set_data(t,np.log(curFilts))
-        line31.set_data(t,slopeFilts*40)
-        line32.set_data(t,controls)
-        line33.set_data(t,devFilts*4)
-        p1.autoscale_view(True, True, True)
-        p1.relim()
-        p2.autoscale_view(True, True, True)
-        p2.relim()
-        p3.autoscale_view(True, True, True)
-        p3.relim()
-        fig.canvas.draw()
+            # Append arrays for plotting
+            devs = np.append(devs,dev)
+            devFilts = np.append(devFilts,devEst)
+            curs = np.append(curs,cur)
+            curFilts = np.append(curFilts,curEst)
+            slopeFilts = np.append(slopeFilts,slopeEst)
+            controls = np.append(controls,control)
+
+            # Update plots
+            t = np.linspace(0, len(devs) - 1, len(devs))
+            line11.set_data(t,devs)
+            line12.set_data(t,devFilts)
+            line21.set_data(t,np.log(curs))
+            line22.set_data(t,np.log(curFilts))
+            line31.set_data(t,slopeFilts*40)
+            line32.set_data(t,controls)
+            line33.set_data(t,devFilts*4)
+            p1.autoscale_view(True, True, True)
+            p1.relim()
+            p2.autoscale_view(True, True, True)
+            p2.relim()
+            p3.autoscale_view(True, True, True)
+            p3.relim()
+            fig.canvas.draw()
 
         # Increate time elapsed and frame counter
         sum += (t2 - t1)
