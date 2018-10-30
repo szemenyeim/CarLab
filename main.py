@@ -27,6 +27,8 @@ if __name__=='__main__':
     sum = 0
     frameCnt = 0
 
+    devEst = None
+
     # Create estimator and controller classes
     estimator = Estimator()
     controller = createContorller()
@@ -116,7 +118,7 @@ if __name__=='__main__':
         frameCnt += 1
 
         # Show image and exit on 'Esc'
-        cv2.imshow("video",proc)
+        cv2.imshow("video",img)
         if cv2.waitKey(1) == 27:
             exit(0)
 

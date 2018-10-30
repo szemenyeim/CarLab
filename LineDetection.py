@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from EdgeDetection import apply_thresholds
-import Matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 def draw_lane_lines(original_image, warped_image, Minv, draw_info):
     leftx = draw_info['leftx']
