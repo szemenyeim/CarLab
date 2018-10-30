@@ -175,11 +175,11 @@ def sanity(ret, left_curverad, right_curverad):
 global used_warped
 global used_ret
 
-def process_image(image):
+def process_image(img):
     global used_warped
     global used_ret
 
-    roi = image[450:710, 220:1150]
+    roi = img[450:710, 220:1150]
 
     # Thresholding
     binary = apply_thresholds(roi)
@@ -203,10 +203,10 @@ def process_image(image):
         ret = used_ret
 
     # Visualizing Lane Lines Info
-    image[450:710, 220:1150] = draw_lane_lines(roi, binary_warped, Minv, ret)
+    img[450:710, 220:1150] = draw_lane_lines(roi, binary_warped, Minv, ret)
 
     # Compute deviation
-    deviation_pixels = image.shape[1]/2 - abs(ret['right_fitx'][-1] - ret['left_fitx'][-1])
+    deviation_pixels = img.shape[1]/2 - abs(ret['right_fitx'][-1] - ret['left_fitx'][-1])
     xm_per_pix = 3.7/(650)
     deviation = deviation_pixels * xm_per_pix
 
@@ -214,4 +214,4 @@ def process_image(image):
     used_warped = binary_warped
     used_ret = ret
 
-    return image, deviation, curveRadius
+    return img, deviation, curveRadius
