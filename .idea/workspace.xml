@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6a0ad51-85de-434b-9fd7-88d615db67fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/EdgeDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/EdgeDetection.py" afterDir="false" />
-    </list>
+    <list default="true" id="b6a0ad51-85de-434b-9fd7-88d615db67fb" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="75" />
-    <option name="y" value="145" />
-    <option name="width" value="1592" />
-    <option name="height" value="785" />
-  </component>
+  <component name="ProjectId" id="1OoKLGYKx6learcGOphJFmJ8SQn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -108,7 +101,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
