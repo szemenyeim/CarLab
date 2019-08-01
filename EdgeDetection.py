@@ -53,9 +53,6 @@ def color_threshold(image):
 def apply_thresholds(image, ksize=3):
     # Get derivatives
     abs_sobelx, abs_sobely, scaled_sobelx, scaled_sobely = create_sobels(image, sobel_kernel=ksize)
-    # Threshold scaled gradient images using inRange
-    gradx = cv2.inRange(scaled_sobelx, 20, 100)
-    grady = cv2.inRange(scaled_sobely, 20, 100)
     # Compute magnitude and direction threshold
     mag_binary = mag_thresh(scaled_sobelx, scaled_sobely, mag_thresh=(30, 100))
     dir_binary = dir_threshold(abs_sobelx, abs_sobely,  thresh=(0.7, 1.3))
@@ -64,6 +61,6 @@ def apply_thresholds(image, ksize=3):
 
     # Combine all thresholded images
     combined = np.zeros_like(dir_binary)
-    combined[((gradx == 255) & (grady == 255)) | ((mag_binary == 255) & (dir_binary == 255)) | (color_binary == 255)] = 1
+    combined[((mag_binary == 255) & (dir_binary == 255)) | (color_binary == 255)] = 1
 
     return combined
