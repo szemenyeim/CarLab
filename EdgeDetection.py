@@ -49,8 +49,6 @@ def color_threshold(image, thresh=(170,255)):
 def apply_thresholds(image, ksize=3):
     # Get derivatives
 
-    # Threshold scaled gradient images using inRange (20,100)
-
     # Compute magnitude and direction threshold
 
     # Compute color threshold
