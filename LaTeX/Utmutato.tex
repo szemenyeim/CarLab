@@ -219,7 +219,7 @@ A Sávdetektálás elvégezhető képi élek segítségével is, melyek definíc
 A probléma nehézsége, hogy természetesen a képen talált élpontok csak egy része fog egyenesekre illeszkedni, és azok közül is számos pont külön-külön egyenesre illeszkedik, így egyszerre kell azt meghatároznunk, hogy mely pontok illeszkednek egy egyenesre, és hogy milyen paraméterek írják le ezt az egyenest. Ha két kérdés közül bármelyikre tudnánk a választ, a probléma megoldása triviális volna.
  Erre a problémára az egyik legnépszerűbb algoritmus a Hough transzformációra épülő alakzat detektálás. A küszöbözés, éldetektálás, valamint a Hough-transzformáció részletei megtalálhatók a Számítógépes Látórendszerek c. tárgy jegyzetében~\cite{szgl}.
 
-Az egyenesek meghatározása a sávdetektálás szempontjából rendkívül hasznos lépés lehetne, azonban a valóságban a megtalált sávok számos esetben nem egyenes alakúak, hanem az út görbületének megfelelő módon változnak. Éppen ezért ilyen esetekben a Hough transzformáció nem fog pontos eredményt adni, ráadásul az egyenes görbületét sem képes meghatározni. E megfontolásokból érdemes egy másik, alternatív megoldást alkalmazni a sávok éképből történő meghatározására. 
+Az egyenesek meghatározása a sávdetektálás szempontjából rendkívül hasznos lépés lehetne, azonban a valóságban a megtalált sávok számos esetben nem egyenes alakúak, hanem az út görbületének megfelelő módon változnak. Éppen ezért ilyen esetekben a Hough transzformáció nem fog pontos eredményt adni, ráadásul az egyenes görbületét sem képes meghatározni. E megfontolásokból érdemes egy másik, alternatív megoldást alkalmazni a sávok élképből történő meghatározására. 
 
 Ez a módszer első lépésként egy perspektív transzformációt alkalmaz a képen, aminek segítségével a képet egy számunkra kedvezőbb formára alakítjuk. A perspektív transzformáció egy olyan általános projektív transzformáció, amely egy tetszőleges kétdimenziós síkot egy másik kétdimenziós síkra vetít le. Ha belegondolunk, a képalkotás során pontosan ez történik: az autóút síkja a kamera képsíkjára vetül. Ennek a transzformációnak az egyik alapvető hatása, hogy számos geometriai jellemzőt (méret, szögek, párhuzamosság) torzít, melynek következtében a képen látható sávokat meghatározó egyenesek nem párhuzamosak. Ha azonban ezt a transzformációt meg tudjuk határozni, és valamilyen módon visszacsinálni, akkor egy sokkal könnyebben feldolgozható képet kapunk.
 
@@ -262,7 +262,7 @@ A mérés folyamán az alábbi feladatokat kell elvégezni:
 \item Torzítsa a képet perspektív transzformáció segítségével úgy, hogy a sávok párhuzamosak legyenek, majd határozza meg a sávok helyzetét!
 \item Készítsen robusztus becslőt a sávok görbületének, az autó helyzetének és ez utóbbi változásának meghatározására!
 \item Valósítson meg egy sávtartó algoritmust egyszerű fuzzy irányítás segítségével!
-\item Ellenőrizze az algoritmus helyes működését előre felvett videófelvételek segítségével!
+\item Ellenőrizze az algoritmus helyes működését előre felvett videofelvételek segítségével!
 \end{enumerate}
 
 \chapter{Hasznos kódrészletek}
@@ -427,8 +427,8 @@ control = controller.output['output']
 
 \begin{enumerate}
 \item Mit jelent a küszöbözés? Hogyan lehet változó fényviszonyok esetében robusztusan elvégezni?
-\item smertesse az éldetektálás első deriváltakon alapuló elvégzésének lehetőségeit!
-\item smertesse az éldetektálás második deriváltakon alapuló elvégzésének lehetőségeit!
+\item Ismertesse az éldetektálás első deriváltakon alapuló elvégzésének lehetőségeit!
+\item Ismertesse az éldetektálás második deriváltakon alapuló elvégzésének lehetőségeit!
 \item Hogyan lehet az éldetektálást konvolúciós szűrések segítségével elvégezni? Ismertessen és hasonlítson össze ilyen szűrőablakokat! Mi a közös tulajdonságuk?
 \item Ismertesse a Canny algoritmus működését!
 \item Mire jó a Hough transzformáció? Hogyan működik?
