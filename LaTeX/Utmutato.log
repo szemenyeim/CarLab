@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.11.20)  28 AUG 2019 20:11
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.11.20)  29 AUG 2019 14:40
 entering extended mode
 **./Utmutato.tex
 (Utmutato.tex
@@ -1807,11 +1807,32 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Utmutato.bbl' found.
- (Utmutato.bbl)
+ (Utmutato.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                gist
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                smart1
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                smart2
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
 Package biblatex Info: Reference section=0 on input line 175.
 Package biblatex Info: Reference segment=0 on input line 175.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
 LaTeX Info: Redefining \cal on input line 576.
 LaTeX Info: Redefining \mit on input line 577.
 )
@@ -1855,26 +1876,32 @@ File: images/22.png Graphic file (type bmp)
 [5
 
 ]
-3. fejezet.
-[6
+Overfull \hbox (3.94069pt too wide) in paragraph at lines 267--268
+\TU/lmr/m/n/12 hogy Pythonban alapvetően a hozzárendelés (assignment) igazából 
+C++-szemszögből
+ []
 
-]
-4. fejezet.
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+[6] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-LaTeX Font Info:    Try loading font information for TU+pcr on input line 272.
-LaTeX Font Info:    No file TUpcr.fd. on input line 272.
+LaTeX Font Info:    Try loading font information for TU+pcr on input line 277.
+LaTeX Font Info:    No file TUpcr.fd. on input line 277.
 
 
 LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 272.
+(Font)              using `TU/lmr/m/n' instead on input line 277.
 
-[7
+[7] [8] [9] [10] [11]
+3. fejezet.
+[12
 
-] [8]
+]
+4. fejezet.
+[13
+
+] [14] [15]
 5. fejezet.
-[9
+[16
 
 ]
 \tf@thm=\write8
@@ -1882,18 +1909,18 @@ LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
 
  
 AED: lastpage setting LastPage
-[10
+[17
 
 ]
 
 Package caption Warning: Unused \captionsetup[sub] on input line 33.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 441.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 441.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 611.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 611.
 (Utmutato.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 441.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 441.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 611.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 611.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1901,15 +1928,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package logreq Info: Writing requests to 'Utmutato.run.xml'.
 \openout1 = `Utmutato.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 441.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 611.
  ) 
 Here is how much of TeX's memory you used:
- 41346 strings out of 427835
- 778359 string characters out of 3152453
- 1311428 words of memory out of 3000000
- 44821 multiletter control sequences out of 15000+200000
+ 41426 strings out of 427835
+ 779267 string characters out of 3152453
+ 1312488 words of memory out of 3000000
+ 44901 multiletter control sequences out of 15000+200000
  538206 words of font info for 70 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 62i,12n,77p,10414b,5033s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,12n,77p,10414b,5276s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Utmutato.pdf (11 pages).
+Output written on Utmutato.pdf (18 pages).

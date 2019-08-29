@@ -72,10 +72,10 @@
 %--------------------------------------------------------------------------------------
 % Main variables
 %--------------------------------------------------------------------------------------
-\newcommand{\vikauthor}{Szemenyei Márton}
-\newcommand{\viktitle}{M9 – Sávkövetés}
+\newcommand{\vikauthor}{Szemenyei Márton, Reizinger Patrik}
+\newcommand{\viktitle}{M8 – Sávkövetés}
 \newcommand{\vikdept}{Irányítástechnika és Informatika Tanszék}
-\newcommand{\vikdoktipus}{Irányítástechnika és Képfeldolgozás Laboratórium}
+\newcommand{\vikdoktipus}{Irányítástechnika és Képfeldolgozás Laboratórium 1.}
 \newcommand{\viksubtitle}{Mérési Útmutató}
 
 %--------------------------------------------------------------------------------------
@@ -205,6 +205,7 @@ aboveskip=10pt}
 \singlespacing
 \tableofcontents\thispagestyle{fancy}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
+\onehalfspacing
 
 \chapter{Autonóm járművek}
 
@@ -223,7 +224,7 @@ Az egyenesek meghatározása a sávdetektálás szempontjából rendkívül hasz
 
 Ez a módszer első lépésként egy perspektív transzformációt alkalmaz a képen, aminek segítségével a képet egy számunkra kedvezőbb formára alakítjuk. A perspektív transzformáció egy olyan általános projektív transzformáció, amely egy tetszőleges kétdimenziós síkot egy másik kétdimenziós síkra vetít le. Ha belegondolunk, a képalkotás során pontosan ez történik: az autóút síkja a kamera képsíkjára vetül. Ennek a transzformációnak az egyik alapvető hatása, hogy számos geometriai jellemzőt (méret, szögek, párhuzamosság) torzít, melynek következtében a képen látható sávokat meghatározó egyenesek nem párhuzamosak. Ha azonban ezt a transzformációt meg tudjuk határozni, és valamilyen módon visszacsinálni, akkor egy sokkal könnyebben feldolgozható képet kapunk.
 
-\begin{figure}
+\begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.95\textwidth]{images/11.png}
 	\includegraphics[width=0.95\textwidth]{images/12.png}
@@ -235,7 +236,7 @@ A perspektív transzformáció meghatározása rendkívül könnyen elvégezhet�
 
 Miután ez a transzformált kép előállt, előállítunk egy speciális hisztogramot: a kép minden oszlopához összeszámoljuk, hogy hány darab egyes pixel található az adott oszlopban. Mivel a sávok görbülhetnek, ezért célszerű csak a kép alsó, a járműhöz közeli felén elvégezni ezt a számlálást. Ha az így kapott hisztogram két maximumát megkeressük, akkor ebből megkaphatjuk a sávok pozícióit. A maximumok értékéből következtethetünk arra is, hogy az adott sáv folytonos vagy szaggatott felfestésű. Az eljárás utolsó lépéseként külön-külön összegyűjtjük a két megtalált vonalhoz tartozó pontokat az egész képről, majd a legkisebb négyzetek módszerének segítségével másodfokú polinomot illesztünk a pontokra, melyből a sáv görbülete meghatározható.
 
-\begin{figure}
+\begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.95\textwidth]{images/21.png}
 	\includegraphics[width=0.95\textwidth]{images/22.png}
@@ -247,11 +248,181 @@ Miután ez a transzformált kép előállt, előállítunk egy speciális hiszto
 
 A mérés során a \emph{PyCharm} elnevezésű IDE áll rendelkezésre, amely rendkívül sokoldalú szolgáltatásokkal könnyíti meg a szoftverfejlesztést, például konfigurálható automatikus formázási lehetőségek állnak rendelkezésünkre. További részletekért érdemes lehet a JetBrains ide vonatkozó weboldalát~\cite{pycharm} felkeresni. Függvények, objektumok esetében a \textbf{\textit{Ctrl+P}} billentyűkombináció pop-up segítségként szolgálva mutatja nekünk a paramétereket. A mérés során használt programnyelv a Python 3-as verziója lesz.
 
+\section{A Python nyelv}
+
+A Python programnyelv egy \textbf{\textit{interpretált szkriptnyelv}} (a saját bytekódját hajtja végre), mely alapvetően az \emph{objektumorientált} paradigma által vezérelve került kialakításra. Jelenleg kétféle, kismértékben eltérő főverziója érhető el, ezek közül a mérésen a 3-as verziót használjuk majd.
+
+Az OOP szemlélet olyannyira központi szerepet tölt be Pythonban, hogy minden változó objektumnak tekinthető – ami azt jelenti, hogy az integer és float típusok is objektumok. A nyelv számára jelentős hátrány adatintenzív számítási feladatok elvégzésekor ennek ténye, ugyanis arról beszélünk, hogy a Python \textbf{\textit{nem rendelkezik natív számtípussal}}. Nem véletlen, hogy a hatékony modulok alacsonyabb szintű nyelveken nyugszanak, így a következő alfejezetben ismertetett PyTorch is.
+
+További nem szokványos jellemzője a nyelvnek, hogy \textbf{\textit{nem erősen típusos}}, a változónevekhez futási időben rendelődik hozzá a referált objektum (azaz egy \textbf{\textit{változónév}} igazából egy referens, vagyis adott \textbf{\textit{példányra mutató referenciát}} tartalmaz). Habár Pythonban a referenciák teljesen úgy viselkednek, mint a változók (vagyis semmilyen szintaktikai kiegészítésre nincs szükség, még argumentumok átadása esetében sem, mint ahogy azt C++-ban láttuk). (A félreértések elkerülése végett fontos szem előtt tartani, hogy amennyiben a segédletben a továbbiakban változó szerepel, akkor is igazából referencia van a háttérben, ezért hangsúlyozott általában, hogy nem a változó, hanem a változónév tartalmazza az objektumra mutató referenciát.)
+
+Vagyis lehetőség van arra, hogy egy referenshez (változónévhez) a programban különböző típusú objektumokat rendeljünk hozzá – ez teljesen logikusnak tűnik, ha belegondolunk abba, hogy a „Pythonban minden objektum” korábbi kijelentés lényegében azt sejteti, hogy minden az objektum ősosztály leszármazottja. A referenciák kezelése referenciaszámláló segítségével történik – a koncepció analóg a például C++-ban megtalálható \emph{shared\_ptr} típus esetén használttal.
+
+Pythonban nincsen továbbá pointer sem, az argumentumok átadása \textbf{\textit{referencia szerint}} történik. Itt azonban meg kell különböztetnünk az objektumokat az alapján, hogy módosíthatóak-e. A következőket érdemes alaposan átgondolni, különben hibás működésű programot kaphatunk.
+
+Kétféle objektumtípus létezik, \textbf{\textit{módosítható}} (mutable), ill. \textbf{\textit{nem módosítható}} (immutable). Nem módosíthatóak többek között az egyszerű adattípusok (POD, plain old data), mint az egész vagy lebegőpontos számok, valamint a sztringek. Habár a gondolatmenet e megfontolás mögött elsőre furcsának tűnik, a következőképpen magyarázható: minden adott szám vagy szöveg egyedi, vagyis ha pl. két változóhoz hozzárendeljük az 5 értéket, akkor a kettő tartalma egymással teljesen azonos, ha az egyiket megváltoztatjuk, akkor az már egy másik objektum lesz: nem egy tagváltozót módosítunk, hanem magát az objektumot teljes mértékben és kizárólagosan azonosító elemet. Talán érdemes a fordított programnyelvekből egy szemléletes példát átgondolni: a fordító ugyanolyan értékeket helyettesít be a gépi kódba (érdeklődők számára: a Pythonnak esetében is elérhető egyfajta disassembly a dis modul segítségével).
+
+Módosítható lényegében minden egyéb típus, így a Pythonba beépített konténer jellegű típusok, mint list, dict (ezek különlegessége, hogy nem csak egy típust képesek egyidejűleg magukba foglalni, hanem bármilyen objektumot), de a saját osztályok példányai is ide tartoznak. Ebben az esetben a módosítás nem eredményezi új objektum létrehozását. A tuple egy különleges eset, ugyanis ez a konténer típus immutable, azonban, ha mutable objektumokat tartalmaz, akkor azok módosulhatnak.
+
+Ezek a különbségek objektumok másolása esetében is jelentkezik. Fontos különbség, hogy Pythonban alapvetően a hozzárendelés (assignment) igazából C++-szemszögből inkább a copy constructor hívásának feleltethető meg. Mutable esetben az eredeti objektumhoz tartozó referenciszámláló kerül megnövelésre, módosítás esetén pedig új objektum jön létre, értelemszerűen ugyanarra az értéket tartalmazó változók egyikének megváltoztatása nem hat ki a többire. Immutable esetben azonban nem ilyen egyszerű a helyzet: mivel alapvetően referenciákat tartalmaznak a változónevek, amelyek módosítható objektumokat referálnak, így ugyanarra a példányra mutató referenciák bármelyikének módosítása változást eredményez a referált egy darab objektum esetében, vagyis bármelyik változóval hivatkozunk rá, a változás mindegyik esetben látható lesz számunkra. Az ilyen jellegű másolást shallow copy-nak szokás nevezni, melynek párja a deepcopy (elérhető a copy modulban), ami Pythonban immutable esetben is új példányt hoz létre, így az új objektum független lesz a többitől.
+
+Paraméterek átadása hozzárendeléssel történik, ez azonban nagy objektumok esetében sem okoz komolyabb problémát, ugyanis a referenciák kerülnek csak másolásra. Ez a láthatóságra a következőképpen van hatással: ha a paraméter immutable és a függvénytörzsben módosításra kerül, akkor lényegében a függvény scope-jában egy ideiglenes objektum kerül létrehozásra, a függvényből visszatérve a változó megtartja eredeti értékét. Immutable esetben, mivel a referencia kerül másolásra, az objektumok másolásánál láttuk, hogy az általuk referált objektumok módosítása érvényes, bármelyik referenciájával hivatkozunk is rá, így a függvény visszatérését követően az objektum már módosult értékével használható.
+Rendkívül hasznos tulajdonság, hogy a Python gyakorlatilag bármennyi visszatérési értéket támogat.
+A nyelvi koncepciók ismertetése után a következőkben a szintaktikai részletek kerülnek összefoglalásra.
+
+Pythonban a programkód tagolása indentálással történik, vagyis a kódblokkokat egy tabulátorral beljebb kell kezdeni (ha valamilyen okból üres függvényt, ciklust, stb, kívánunk írni, akkor is kell egy indentált blokk, ezt egy sorban, a pass utasítással valósíthatjuk meg, ami nem hajt végre semmilyen műveletet).
+
+Modulok betöltésére az import utasítással van lehetőségünk, mégpedig kétféle módon: importálhatjuk a teljes modult, ekkor a modul minden osztálya/függvénye a modul neve után írt „.” (pont) operátorral érhető el, ha from-ot használunk, lehetőségünk van csak egyes elemeket betölteni, ekkor a modul nevét nem kell az importált elem neve elé kiírni.
+
+\begin{lstlisting}[language=Python]
+import module
+m = module.MyClass()
+
+import module as md
+m = md.MyClass()
+
+from module import MyClass, my_func
+m = myClass()
+\end{lstlisting}
+
+Függvények a következő módon hozhatók létre:
+
+\begin{lstlisting}[language=Python]
+def func(x):
+x += 1
+print("x = ", x)
+\end{lstlisting}
+
+A def kulcsszó után a függvény neve, majd a paraméterlista kerül megadásra, azt követően pedig az indentált függvénytörzs következik.
+
+Osztályok esetében sem bonyolult a konstrukció:
+
+\begin{lstlisting}[language=Python]
+class my_class(object):
+def __init__(self):
+self.x = 5
+\end{lstlisting}
+
+Pythonban a konstruktort az \_\_init\_\_ (2-2 aláhúzással) rutin testesíti meg, mint látható, a tagfüggvények is majdnem teljesen megegyeznek az általános függvényekkel, azzal a különbséggel, hogy az első argumentum mindenképpen az adott példányra vonatkozik (mint ahogy a this C++-ban) – ezt konvenció szerint self-nek szoktuk nevezni.
+Öröklés esetén nincs más teendőnk, mint az object osztály helyett megadni az általunk választott ősosztályt, majd a konstruktorban meghívni az ősosztály konstruktorát a super, általánosan az ősosztályra használható objektum segítségével.
+
+\begin{lstlisting}[language=Python]
+class base_class(object):
+def __init__(self):
+print("I am Groot")
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+class inherited_class(base_class):
+def __init__(self):
+super().__init__()
+print("I am inherited")
+\end{lstlisting}
+
+Aki mélyebben érdeklődik a Python nyelv iránt, annak érdemes felkeresnie további példaprogramokat és kódrészleteket~\cite{gist}, valamint a TMIT SmartLab blogjának bejegyzéseit~\cite{smart1,smart2} (angolul). 
+
 A Python programnyelvhez számos hasznos függvénykönyvtár tartozik, melyek a mérési feladatok megvalósítását nagymértékben megkönnyítik. A Python nyelv egyik rendkívül kényelmes funkciója a beépített package manager, amelynek segítségével az egyes könyvtárak automatikusan telepíthetők, telepítsük után pedig minden további beállítás nélkül használhatók. A Pythonhoz két ilyen package manager is tartozik, az egyik a Pip, amely a legtöbb telepíthető Python verzió mellé automatikusan települ, a másik pedig az Anaconda~\cite{conda}, ami a könyvtárkezelési funkciókon túl virtuális környezeteket is képes kezelni.
 
 A Python egyik legfontosabb függvénykönyvtára a Numpy, amely tömbök kezelésére, illetve számtalan numerikus algoritmus használatára ad lehetőséget. A Numpy funkcionalitását kiegészíti a MatplotLib, melynek segítségével különböző ábrákat készíthetünk a tömbjeinkről. Egy harmadik rendkívül hasznos könyvtárcsalád a scikit, ami számos tudományos számításhoz szükséges alkönyvtárt foglal össze. A sckit-image képek kezelésére, a scikit-learn gépi tanulás algoritmusok használatára, míg a scikit-fuzzy fuzzy logika használatára ad lehetőséget. Ezek a könyvtárak tulajdonképpen együttesen kiadják a Matlab funkcionalitásának jelentős részét.
 
+\section{OpenCV}
+
 Az OpenCV~\cite{opencv} egy nyílt forráskódú számítógépes látás algoritmusokat tartalmazó függvénykönyvtár. Az OpenCV elsődleges nyelve a C++, azonban elérhetőek hozzá hivatalos wrapperek többek között Java és Python nyelven. Az OpenCV rengeteg hivatalosan támogatott algoritmust tartalmaz, melyen felül a külön letölthető Contrib modulban harmadik felek által kifejlesztett további funkciók is elérhetők.
+
+\subsection{Adattípusok}
+
+Az OpenCV könyvtár a Python verzióban a Numpy könyvtár által definiált n dimenziós számtömböket (ndarray) használja a képek tárolására. Ezek a tömbök különböző adattípusokat tartalmazhatnak, méretük minden kép esetén $c\times H\times W$, ahol $c$ a csatornák, $H$ a képsorok, $W$ pedig az oszlopok száma. Az egyszerűbb képi adattípusok egy azonosítóval is definiálhatóak az alábbi formában:
+
+\begin{center} 
+	CV\_<bitmélység>{U|S|F}C<csatornák száma>
+\end{center} 
+
+Bár tömbök segítségével közvetlenül is tárolhatnánk többdimenziós adatokat, a csatornák számának közvetlen megadása kényelmesebbé és szemléletesebbé teszi az adattárolást és programozást. Például színes képek esetén három csatornára van szükségünk, esetleg négyre, ha az időt is tárolni akarjuk.
+Példák:
+\begin{itemize}
+	\item CV\_32F: 32 bites lebegőpontos szám
+	\item CV\_8UC3: 8 bites 3 csatornás szám/kép
+\end{itemize}
+
+\subsection{Numpy tömbök manipulációja}
+
+Üres $3\times 4$ tömb létrehozása:
+
+\begin{lstlisting}[language=Python]
+arr = np.ndarray((3,4))
+\end{lstlisting}
+
+Nullákkal/egyesekkel feltöltött $3\times 4$ tömb létrehozása:
+
+\begin{lstlisting}[language=Python]
+arr = np.zeros((3,4))
+arr = np.ones((3,4))
+\end{lstlisting}
+
+Nullákkal/egyesekkel feltöltött, egy másik tömbbel megegyező méretű és típusú tömb létrehozása:
+
+\begin{lstlisting}[language=Python]
+arr1 = np.zeros_like(arr)
+arr1 = np.ones_like(arr)
+\end{lstlisting}
+
+Lista-tömb konverzió:
+
+\begin{lstlisting}[language=Python]
+arr = np.array([[1,2,3],[4,5,6]])
+\end{lstlisting}
+
+Típuskonverzió:
+
+\begin{lstlisting}[language=Python]
+arr1 = arr.astype('float32')
+arr1 = arr.astype('float64')
+arr1 = arr.astype('uint8')
+arr1 = arr.astype('int16')
+\end{lstlisting}
+
+Tömb mérete és adattípusa:
+
+\begin{lstlisting}[language=Python]
+arr.shape
+arr.dtype
+\end{lstlisting}
+
+Tömb eleméhez történő hozzáférés:
+
+\begin{lstlisting}[language=Python]
+arr[2,2] # egy elem
+arr[-1,-1] # utolsó sor utolsó eleme
+arr[1:4,2:5] # részmátrix kiemelése (FONTOS: A felsö limit nem inkluzív, vagyis az [1-4) sor és a [2-5) oszlop vannak benne)
+arr[1:3,:] # [1-3) sorok összes eleme 
+
+rowInd = [1,3,5,11]
+arr[rowInd] # Az 1,3,5 éa 11 sorok összes eleme
+
+colBin = [True,True,False,True,False,False]
+arr[:,colBin] # az összes sor 0,1 és 3 oszlopai
+\end{lstlisting}
+
+\subsection{Képek olvasása és megjelenítése}
+
+Az első programunk egy keretprogram, melyet a mérés során folyamatosan módosítunk, bővítünk. A program rendkívül egyszerű, az OpenCV imread(), namedWindow() és imshow() függvényei megjelenítik egy ablakban a képet, majd az „ESC” gomb hatására program visszatér az operációs rendszerhez.
+
+\begin{lstlisting}[language=Python]
+import cv2
+import numpy as np
+
+img = cv2.imread("image.jpg",cv2.IMREAD_COLOR)
+cv2.imshow("Image",img)
+cv2.waitKey(0) # Waits for keyboard press - necessary after imshow
+\end{lstlisting}
+
+A cv2.IMREAD\_COLOR egy logikai változó (ún. flag), mely megmondja az imread függvénynek, hogy a képet színesként, három csatornán töltse be.  Alternatívaként, a cv2.IMREAD\_GRAYSCALE flag használatával lehetőség van a képet szürkeárnyalatosként, egyetlen csatornán betölteni. Fontos opció továbbá a cv2.IMREAD\_UNCHANGED melyet gyakran használunk RGB-D kamerák esetén a mélység kép betöltésére, mivel ezek általában egy csatornás, 16 bites képek, így a többi flag esetén elvégzett 8 bites konverzió adatvesztéshez vezetne.
+
+A mérés során az eredmények mentéséhez és a mérési jegyzőkönyvhöz szükségünk lesz a képek kiírására, amihez az alábbi utasítás használható:
+
+\begin{lstlisting}[language=Python]
+cv2.imwrite("img_out.jpg",img)
+\end{lstlisting}
 
 \chapter{Mérési feladatok}
 
@@ -427,13 +598,12 @@ control = controller.output['output']
 
 \begin{enumerate}
 \item Mit jelent a küszöbözés? Hogyan lehet változó fényviszonyok esetében robusztusan elvégezni?
-\item Ismertesse az éldetektálás első deriváltakon alapuló elvégzésének lehetőségeit!
-\item Ismertesse az éldetektálás második deriváltakon alapuló elvégzésének lehetőségeit!
-\item Hogyan lehet az éldetektálást konvolúciós szűrések segítségével elvégezni? Ismertessen és hasonlítson össze ilyen szűrőablakokat! Mi a közös tulajdonságuk?
+\item Ismertesse az éldetektálás első és második deriváltakon alapuló elvégzésének lehetőségeit! Írjon fel éldetektáló konvolúciós szűrőket! Mi a közös tulajdonságuk?
 \item Ismertesse a Canny algoritmus működését!
 \item Mire jó a Hough transzformáció? Hogyan működik?
 \item Milyen módszerrel lehet nem egyenes sávok pozícióját és görbületét könnyedén meghatározni?
 \item Milyen programozási nyelvet használunk a mérés során? Miért előnyös ez a nyelv multi-platform fejlesztés esetén?
+\item Hogyan lehet osztályt és függvényt definiálni Python nyelven? (pszeudokód elég)
 \end{enumerate}
 
 \printbibliography

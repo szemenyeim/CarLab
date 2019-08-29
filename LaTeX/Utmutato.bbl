@@ -72,8 +72,8 @@
       \endverb
     \endentry
     \entry{conda}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
       \field{labeltitlesource}{title}
       \field{title}{Anaconda}
       \verb{urlraw}
@@ -84,8 +84,8 @@
       \endverb
     \endentry
     \entry{opencv}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{sortinit}{6}
+      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
       \field{labeltitlesource}{title}
       \field{title}{OpenCV Documentation}
       \verb{urlraw}
@@ -96,6 +96,9 @@
       \endverb
     \endentry
   \enddatalist
+  \missing{gist}
+  \missing{smart1}
+  \missing{smart2}
 \endrefsection
 \endinput
 
