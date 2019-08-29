@@ -1,6 +1,11 @@
 \BOOKMARK [0][-]{chapter.1}{Autonóm járművek}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Sávdetektálás}{chapter.1}% 2
 \BOOKMARK [0][-]{chapter.2}{A mérés környezete}{}% 3
-\BOOKMARK [0][-]{chapter.3}{Mérési feladatok}{}% 4
-\BOOKMARK [0][-]{chapter.4}{Hasznos kódrészletek}{}% 5
-\BOOKMARK [0][-]{chapter.5}{Ellenőrző kérdések}{}% 6
+\BOOKMARK [1][-]{section.2.1}{A\040Python\040nyelv}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.2}{OpenCV}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.1}{Adattípusok}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.2}{Numpy tömbök manipulációja}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.3}{Képek olvasása és megjelenítése}{section.2.2}% 8
+\BOOKMARK [0][-]{chapter.3}{Mérési feladatok}{}% 9
+\BOOKMARK [0][-]{chapter.4}{Hasznos kódrészletek}{}% 10
+\BOOKMARK [0][-]{chapter.5}{Ellenőrző kérdések}{}% 11
