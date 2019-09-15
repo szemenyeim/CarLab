@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.11.20)  29 AUG 2019 14:40
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2018.11.20)  15 SEP 2019 20:05
 entering extended mode
 **./Utmutato.tex
 (Utmutato.tex
@@ -1807,32 +1807,11 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Utmutato.bbl' found.
- (Utmutato.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                gist
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                smart1
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                smart2
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
+ (Utmutato.bbl)
 Package biblatex Info: Reference section=0 on input line 175.
 Package biblatex Info: Reference segment=0 on input line 175.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
 LaTeX Info: Redefining \cal on input line 576.
 LaTeX Info: Redefining \mit on input line 577.
 )
@@ -1931,10 +1910,10 @@ Package logreq Info: Writing requests to 'Utmutato.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 611.
  ) 
 Here is how much of TeX's memory you used:
- 41426 strings out of 427835
- 779267 string characters out of 3152453
+ 41431 strings out of 427835
+ 779487 string characters out of 3152453
  1312488 words of memory out of 3000000
- 44901 multiletter control sequences out of 15000+200000
+ 44906 multiletter control sequences out of 15000+200000
  538206 words of font info for 70 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  62i,12n,77p,10414b,5276s stack positions out of 5000i,500n,10000p,200000b,50000s
