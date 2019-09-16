@@ -91,10 +91,10 @@
       \field{labeltitlesource}{title}
       \field{title}{Python Példaprogramok}
       \verb{urlraw}
-      \verb https://gist.github.com/search?utf8=\%E2\%9C\%93\&q=user\%3Arpatrik96\&ref=searchresults
+      \verb https://gist.github.com/rpatrik96
       \endverb
       \verb{url}
-      \verb https://gist.github.com/search?utf8=%5C%E2%5C%9C%5C%93%5C&q=user%5C%3Arpatrik96%5C&ref=searchresults
+      \verb https://gist.github.com/rpatrik96
       \endverb
     \endentry
     \entry{smart1}{misc}{}
