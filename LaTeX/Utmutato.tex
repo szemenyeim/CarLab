@@ -331,7 +331,7 @@ Az OpenCV~\cite{opencv} egy nyílt forráskódú számítógépes látás algori
 
 \subsection{Adattípusok}
 
-Az OpenCV könyvtár a Python verzióban a Numpy könyvtár által definiált n dimenziós számtömböket (ndarray) használja a képek tárolására. Ezek a tömbök különböző adattípusokat tartalmazhatnak, méretük minden kép esetén $c\times H\times W$, ahol $c$ a csatornák, $H$ a képsorok, $W$ pedig az oszlopok száma. Az egyszerűbb képi adattípusok egy azonosítóval is definiálhatóak az alábbi formában:
+Az OpenCV könyvtár a Python verzióban a Numpy könyvtár által definiált n dimenziós számtömböket (ndarray) használja a képek tárolására. Ezek a tömbök különböző adattípusokat tartalmazhatnak, méretük minden kép esetén $H\times W\times c$, ahol $c$ a csatornák, $H$ a képsorok, $W$ pedig az oszlopok száma. Az egyszerűbb képi adattípusok egy azonosítóval is definiálhatóak az alábbi formában:
 
 \begin{center} 
 	CV\_<bitmélység>{U|S|F}C<csatornák száma>
@@ -520,7 +520,7 @@ Minv = cv2.getPerspectiveTransform(dst, src)
 Kép transzformálása
 
 \begin{lstlisting}[language=Python]
-warped = cv2.warpPers
+warped = cv2.warpPerspective(img, M, img_size, flags=cv2.INTER_LINEAR)
 \end{lstlisting}
 
 Hisztogram számítása
