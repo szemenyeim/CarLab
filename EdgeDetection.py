@@ -64,3 +64,33 @@ def apply_thresholds(image, ksize=3):
     combined[((mag_binary == 255) & (dir_binary == 255)) | (color_binary == 255)] = 1
 
     return combined
+
+def warp(img):
+    img_size = (img.shape[1], img.shape[0])
+
+    # Source and destination points
+    src = np.float32(
+        [[380, 0],
+          [875, 235],
+          [60, 235],
+          [470, 0]])
+
+    dst = np.float32(
+        [[150, 0],
+         [800, 260],
+         [150, 260],
+         [800, 0]])
+
+    # Get perspective transforms
+    M = cv2.getPerspectiveTransform(src, dst)
+    Minv = cv2.getPerspectiveTransform(dst, src)
+
+    # Warp image
+    binary_warped = cv2.warpPerspective(img, M, img_size, flags=cv2.INTER_LINEAR)
+
+    return binary_warped, Minv
+
+def get_histogram(binary_warped):
+    histogram = np.sum(binary_warped[binary_warped.shape[0]//2:,:], axis=0)
+
+    return histogram
