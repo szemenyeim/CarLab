@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import time
-from LineDetection import process_image
+from LineDetection import LineDetector
 from Estimator import Estimator
 from Control import createContorller
 import matplotlib.pyplot as plt
@@ -30,6 +30,7 @@ if __name__=='__main__':
     devEst = None
 
     # Create estimator and controller classes
+    lineDetector = LineDetector()
     estimator = Estimator()
     controller = createContorller()
 
