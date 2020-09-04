@@ -70,14 +70,30 @@
 
 \lstset{style=mystyle}
 
+
 %--------------------------------------------------------------------------------------
 % Main variables
 %--------------------------------------------------------------------------------------
-\newcommand{\vikauthor}{Szemenyei Márton, Reizinger Patrik}
-\newcommand{\viktitle}{M8 – Sávkövetés}
 \newcommand{\vikdept}{Irányítástechnika és Informatika Tanszék}
-\newcommand{\vikdoktipus}{Irányítástechnika és Képfeldolgozás Laboratórium 1.}
 \newcommand{\viksubtitle}{Mérési Útmutató}
+
+
+%--------------------------------------------------------------------------------------
+% RAT or IKL conditional
+%--------------------------------------------------------------------------------------
+\newif\ifratlabor
+%\ratlabortrue % Comment out for IKL, leave it in for RAT
+
+
+\ifratlabor
+\newcommand{\viktitle}{2D Képfeldolgozás}
+\newcommand{\vikdoktipus}{Rendszer- és Alkalmazástechnika Laboratórium 1.}
+\newcommand{\vikauthor}{Szemenyei Márton, Kertész Zsolt}
+\else
+\newcommand{\viktitle}{M8 – Sávkövetés}
+\newcommand{\vikdoktipus}{Irányítástechnika és Képfeldolgozás Laboratórium 1.}
+\newcommand{\vikauthor}{Szemenyei Márton, Reizinger Patrik}
+\fi
 
 %--------------------------------------------------------------------------------------
 % Page layout setup
