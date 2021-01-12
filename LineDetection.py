@@ -1,8 +1,20 @@
 import numpy as np
 import cv2
 from EdgeDetection import apply_thresholds, warp, get_histogram
+import matplotlib.pyplot as plt
 
 class LineDetector(object):
+
+    def __init__(self):
+        super().__init__()
+        x = np.linspace(0, 1, 930)
+        y = 150*np.sin(x)
+        self.fig = plt.gcf()
+        self.ax = self.fig.add_subplot(111)
+        self.ax.set_title('Lanes')
+        self.line1, = self.ax.plot(x, y, 'r-')
+        self.fig.show()
+        self.fig.canvas.draw()
 
     def draw_lane_lines(self, original_image, warped_image, Minv, draw_info):
         leftx = draw_info['leftx']
@@ -162,12 +174,19 @@ class LineDetector(object):
 
         # Thresholding
         binary = apply_thresholds(roi)
+        cv2.imshow("Binary", binary*255)
 
         # Transforming Perspective
         binary_warped, Minv = warp(binary)
+        cv2.imshow("Warped", binary_warped*255)
 
         # Getting Histogram
         histogram = get_histogram(binary_warped)
+
+        self.line1.set_ydata(histogram)
+        #self.ax.autoscale_view(True, True, True)
+        #self.ax.relim()
+        self.fig.canvas.draw()
 
         # Sliding Window to detect lane lines
         ret = self.slide_window(binary_warped, histogram)

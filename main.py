@@ -41,7 +41,7 @@ if __name__=='__main__':
     controls = np.array([])
 
     # Create figures
-    fig = plt.gcf()
+    '''fig = plt.gcf()
     t = np.linspace(0, len(devs) - 1, len(devs))
     p1 = plt.subplot(311)
     p1.set_title('Deviation from lane center')
@@ -60,10 +60,12 @@ if __name__=='__main__':
     line33, = p3.plot(t, devFilts, 'g')
     plt.legend((line31, line32, line33), ('Slope', 'Controller Output', 'Deviation'))
     fig.show()
-    fig.canvas.draw()
+    fig.canvas.draw()'''
 
     # Read video file
     clip = cv2.VideoCapture("original.mp4")
+
+    firstFrame = True
 
     while(True):
 
@@ -104,7 +106,7 @@ if __name__=='__main__':
         controls = np.append(controls,control)
 
         # Update plots
-        t = np.linspace(0, len(devs) - 1, len(devs))
+        '''t = np.linspace(0, len(devs) - 1, len(devs))
         line11.set_data(t,devs)
         line12.set_data(t,devFilts)
         line21.set_data(t,np.log(curs))
@@ -118,14 +120,17 @@ if __name__=='__main__':
         p2.relim()
         p3.autoscale_view(True, True, True)
         p3.relim()
-        fig.canvas.draw()
+        fig.canvas.draw()'''
 
         # Increate time elapsed and frame counter
         sum += (t2 - t1)
         frameCnt += 1
 
         # Show image and exit on 'Esc'
-        cv2.imshow("video",proc)
+        cv2.imshow("video",proc[450:710, 220:1150])
+        if firstFrame:
+            cv2.waitKey(0)
+            firstFrame = False
         if cv2.waitKey(1) == 27:
             exit(0)
 
