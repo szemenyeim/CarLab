@@ -1,11 +1,11 @@
-\BOOKMARK [0][-]{chapter.1}{Autonóm járművek}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Sávdetektálás}{chapter.1}% 2
-\BOOKMARK [0][-]{chapter.2}{A mérés környezete}{}% 3
+\BOOKMARK [0][-]{chapter.1}{\376\377\000A\000u\000t\000o\000n\000\363\000m\000\040\000j\000\341\000r\000m\001\161\000v\000e\000k}{}% 1
+\BOOKMARK [1][-]{section.1.1}{\376\377\000S\000\341\000v\000d\000e\000t\000e\000k\000t\000\341\000l\000\341\000s}{chapter.1}% 2
+\BOOKMARK [0][-]{chapter.2}{\376\377\000A\000\040\000m\000\351\000r\000\351\000s\000\040\000k\000\366\000r\000n\000y\000e\000z\000e\000t\000e}{}% 3
 \BOOKMARK [1][-]{section.2.1}{A\040Python\040nyelv}{chapter.2}% 4
 \BOOKMARK [1][-]{section.2.2}{OpenCV}{chapter.2}% 5
-\BOOKMARK [2][-]{subsection.2.2.1}{Adattípusok}{section.2.2}% 6
-\BOOKMARK [2][-]{subsection.2.2.2}{Numpy tömbök manipulációja}{section.2.2}% 7
-\BOOKMARK [2][-]{subsection.2.2.3}{Képek olvasása és megjelenítése}{section.2.2}% 8
-\BOOKMARK [0][-]{chapter.3}{Mérési feladatok}{}% 9
-\BOOKMARK [0][-]{chapter.4}{Hasznos kódrészletek}{}% 10
-\BOOKMARK [0][-]{chapter.5}{Ellenőrző kérdések}{}% 11
+\BOOKMARK [2][-]{subsection.2.2.1}{\376\377\000A\000d\000a\000t\000t\000\355\000p\000u\000s\000o\000k}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.2}{\376\377\000N\000u\000m\000p\000y\000\040\000t\000\366\000m\000b\000\366\000k\000\040\000m\000a\000n\000i\000p\000u\000l\000\341\000c\000i\000\363\000j\000a}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.3}{\376\377\000K\000\351\000p\000e\000k\000\040\000o\000l\000v\000a\000s\000\341\000s\000a\000\040\000\351\000s\000\040\000m\000e\000g\000j\000e\000l\000e\000n\000\355\000t\000\351\000s\000e}{section.2.2}% 8
+\BOOKMARK [0][-]{chapter.3}{\376\377\000M\000\351\000r\000\351\000s\000i\000\040\000f\000e\000l\000a\000d\000a\000t\000o\000k}{}% 9
+\BOOKMARK [0][-]{chapter.4}{\376\377\000H\000a\000s\000z\000n\000o\000s\000\040\000k\000\363\000d\000r\000\351\000s\000z\000l\000e\000t\000e\000k}{}% 10
+\BOOKMARK [0][-]{chapter.5}{\376\377\000E\000l\000l\000e\000n\001\121\000r\000z\001\121\000\040\000k\000\351\000r\000d\000\351\000s\000e\000k}{}% 11
