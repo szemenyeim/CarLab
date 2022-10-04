@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6a0ad51-85de-434b-9fd7-88d615db67fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CarLab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CarLab.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.aux" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.bcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.log" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.out" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.tex" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LaTeX/Utmutato.toc" beforeDir="false" afterPath="$PROJECT_DIR$/LaTeX/Utmutato.toc" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,18 +43,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="CarLab" />
@@ -62,6 +56,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -95,9 +90,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

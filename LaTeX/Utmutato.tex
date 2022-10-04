@@ -513,7 +513,7 @@ converted = np.uint8(array)
 Tartományon belüli küszöbözés
 
 \begin{lstlisting}[language=Python]
-binary = cv2.inRange(rray, low_thresh, high_thresh)
+binary = cv2.inRange(array, low_thresh, high_thresh)
 \end{lstlisting}
 
 Atan2 tömbön
@@ -555,10 +555,16 @@ Kép transzformálása
 warped = cv2.warpPerspective(img, M, img_size, flags=cv2.INTER_LINEAR)
 \end{lstlisting}
 
-Hisztogram számítása
+Kép aljának kivágása - middle row a kép magasságából számítandó
 
 \begin{lstlisting}[language=Python]
-histogram = np.sum(warped[warped.shape[0]//2:,:], axis=0)
+warped[middle_row:,:]
+\end{lstlisting}
+
+Hisztogram számítása: Az axis paraméter a szummázás irányát adja meg: 0-függőleges, 1-vízszintes
+
+\begin{lstlisting}[language=Python]
+histogram = np.sum(image, axis=?)
 \end{lstlisting}
 
 Hisztogram megjelenítése
@@ -569,7 +575,7 @@ plt.plot(histogram)
 plt.show()
 \end{lstlisting}
 
-Tömb shiftelése
+Tömb shiftelése: az 1 argumentum a tömböt hátrafele shifteli, ekkor az új elemet a 0. pozícióba kell tenni
 
 \begin{lstlisting}[language=Python]
 a = np.roll(a,1)
@@ -581,19 +587,24 @@ a = np.roll(a,1)
 avg = np.mean(a)
 \end{lstlisting}
 
-LS becslés
+LS becslés: Az egyenes meredeksége a lineParams 0. eleme
 
 \begin{lstlisting}[language=Python]
-lineEst = np.linalg.lstsq(X,Y, rcond=None)[0]
+lineParams, sqr_error = np.linalg.lstsq(X,Y, rcond=None)
 \end{lstlisting}
 
-Fuzzy változó
+Fuzzy tagsági függvények létrehozása
 
 \begin{lstlisting}[language=Python]
 universe = np.linspace(-2, 2, 5)
-var = ctrl.Antecedent(universe, 'name')
 names = ['nb', 'ns', 'ze', 'ps', 'pb']
-var.automf(names=names)
+\end{lstlisting}
+
+Fuzzy változó létrehozása: A kimeneti változót nem Antecendent-ként, hanem Consequent-ként kell létrehozni
+
+\begin{lstlisting}[language=Python]
+error = ctrl.Antecedent(universe, 'error')
+error.automf(names=names)
 \end{lstlisting}
 
 Fuzzy szabály készítése
