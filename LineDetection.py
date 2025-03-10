@@ -40,13 +40,13 @@ class LineDetector(object):
     def slide_window(self, binary_warped, histogram):
 
         # Get line bases
-        midpoint = np.int(histogram.shape[0]/2)
+        midpoint = int(histogram.shape[0]/2)
         leftx_base = np.argmax(histogram[:midpoint])
         rightx_base = np.argmax(histogram[midpoint:]) + midpoint
 
         # Define sliding window
         nwindows = 9
-        window_height = np.int(binary_warped.shape[0]/nwindows)
+        window_height = int(binary_warped.shape[0]/nwindows)
 
         # Get nonzero pixels
         nonzero = binary_warped.nonzero()
@@ -82,9 +82,9 @@ class LineDetector(object):
 
             # If found enough pixels, then shift the line midpoint
             if len(good_left_inds) > minpix:
-                leftx_current = np.int(np.mean(nonzerox[good_left_inds]))
+                leftx_current = int(np.mean(nonzerox[good_left_inds]))
             if len(good_right_inds) > minpix:
-                rightx_current = np.int(np.mean(nonzerox[good_right_inds]))
+                rightx_current = int(np.mean(nonzerox[good_right_inds]))
 
         # Reshape index array
         left_lane_inds = np.concatenate(left_lane_inds)
